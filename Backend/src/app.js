@@ -10,8 +10,12 @@ app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(morgan('dev'));
 app.use(express.json());
 
+const authRoutes = require('./routes/authRoutes');
+
 app.get('/api/health', (req, res) => {
     res.json({ status: 'OK', message: 'CineMate API is running 🎬' });
 });
+
+app.use('/api/auth', authRoutes);
 
 module.exports = app;
